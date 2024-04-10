@@ -24,11 +24,14 @@ def ceaserCipher(encodeordecode,isGameFinished):
             shift = int(input("Type the shift number: "))
             text_arr= list(text)
             ceaserCipher_word_arr = []
+            if shift >= len(alphabet_letters):
+                 shift = shift % len(alphabet_letters)
+                 print(f"Hhere is shift value {shift}")
             shift = -shift if encodeordecode == "decode" else shift
             for letter in range(len(text_arr)):
                 for i in range(len(alphabet_letters)):
                     if text_arr[letter] == alphabet_letters[i]:
-                        ceaserCipher_word_arr.append(alphabet_letters[i+shift])
+                        ceaserCipher_word_arr.append(alphabet_letters[(i+shift) % len(alphabet_letters)])
             print(f"{"".join(ceaserCipher_word_arr)}")
             playAgain(isGameFinished)
         else:
